@@ -2,7 +2,10 @@
 <p align="center">On-Premise & Offline, Robust, ID Card, Passport, Driver License OCR SDK for Linux</p>
 
 <p align="center">
-<a href="https://twitter.com/intent/tweet?text=On-Device,%20Robust,%20ID%20Card,%20Passport,%20Driver%20License%20OCR%20SDK%20for%20Linux%0D%0D&url=https://github.com/FaceOnLive/ID-Card-Passport-Recognition-SDK-Linux%0D%0D&hashtags=computervision,deeplearning,ocr,identity,idcard,passport,driverlicense,linux,developers"><img src="http://randojs.com/images/tweetShield.svg" alt="Tweet" height="20"/></a>&emsp;<a href="https://t.me/faceonlive"><img src="https://badgen.net/badge/icon/telegram?icon=telegram&label" alt="Telegram" height="20"/></a>
+<a target="_blank" href="mailto:contact@faceonlive.com"><img src="https://img.shields.io/badge/email-contact@faceonlive.com-blue.svg?logo=gmail " alt="www.faceonlive.com"></a>&emsp;
+<a target="_blank" href="https://t.me/faceonlive"><img src="https://img.shields.io/badge/telegram-@faceonlive-blue.svg?logo=telegram " alt="www.faceonlive.com"></a>&emsp;
+<a target="_blank" href="https://wa.me/+17074043606"><img src="https://img.shields.io/badge/whatsapp-faceonlive-blue.svg?logo=whatsapp " alt="www.faceonlive.com"></a>&emsp;
+<a target="_blank" href="skype:demidemi1125?chat"><img src="https://img.shields.io/badge/skype-demidemi1125-blue.svg?logo=skype " alt="www.faceonlive.com"></a>
 </p>
 
 Please try on our portfolio website. (No sign-up required.)
@@ -10,5 +13,3 @@ Please try on our portfolio website. (No sign-up required.)
 https://portfolio.faceonlive.com/#server_sdks/server/
 
 ![portfolio](https://user-images.githubusercontent.com/91896009/186426527-74ea478b-ac02-4b41-aeb9-a6386f216e4a.gif)
-
-Contact Us (mailto:contact@faceonlive.com)
