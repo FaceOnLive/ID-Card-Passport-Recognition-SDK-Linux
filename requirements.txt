@@ -1,0 +1,5 @@
+opencv-python
+flask
+flask-cors
+gradio
+numpy==1.20.3

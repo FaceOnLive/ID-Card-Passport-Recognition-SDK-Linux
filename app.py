@@ -18,41 +18,23 @@ from ocrengine.ocrengine import TTVOcrCreditCard
 from ocrengine.ocrengine import TTVOcrBarCode
 from ocrengine.ocrengine import ttv_if_checker
 
-# Set the template and static folder to the client build
-app = Flask(__name__, template_folder="client/build", static_folder="client/build/static")
-
-app.config['SECRET_KEY'] = 'super secret key'
-app.config['SITE'] = "http://0.0.0.0:8000/"
-app.config['DEBUG'] = True
+app = Flask(__name__)
 
 ocrHWID = TTVOcrGetHWID()
-print('ocr hwid: ', ocrHWID.decode('utf-8'))
-
-licensePath = os.path.abspath(os.path.dirname(__file__)) + '/ocrengine/dict/license.txt'
-ocrRet = TTVOcrSetActivation(licensePath.encode('utf-8'))
+licenseKey = os.environ.get("LICENSE_KEY")
+ocrRet = TTVOcrSetActivation(licenseKey.encode('utf-8'))
 print('ocr activation: ', ocrRet.decode('utf-8'))
 
 dictPath = os.path.abspath(os.path.dirname(__file__)) + '/ocrengine/dict'
 ocrRet = TTVOcrInit(dictPath.encode('utf-8'))
 print('ocr engine init: ', ocrRet.decode('utf-8'))
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def catch_all(path):
-    """ This is a catch all that is required for react-router """
-    return render_template('index.html')
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory('client/build', 'favicon.ico')
-
 @app.route('/ocr/idcard', methods=['POST'])
 def ocr_idcard():
-  print(request.files)
   file1 = request.files['image1']
 
   file_name1 = uuid.uuid4().hex[:6]
-  save_path1 = 'dump2/' + file_name1 + '_' + file1.filename
+  save_path1 = '/tmp/' + file_name1 + '_' + file1.filename
   file1.save(save_path1)
 
   file_path1 = os.path.abspath(save_path1)
@@ -63,9 +45,8 @@ def ocr_idcard():
     file2 = request.files['image2']
 
     file_name2 = uuid.uuid4().hex[:6]
-    save_path2 = 'dump2/' + file_name2 + '_' + file2.filename
+    save_path2 = '/tmp/' + file_name2 + '_' + file2.filename
     file2.save(save_path2)
-    print(file2.filename)
 
     file_path2 = os.path.abspath(save_path2)
 
@@ -91,7 +72,7 @@ def ocr_idcard_base64():
   imageBase64 = content['image']
 
   file_name = uuid.uuid4().hex[:6]
-  save_path = 'dump2/' + file_name
+  save_path = '/tmp/' + file_name
   with open(save_path, "wb") as fh:
     fh.write(base64.b64decode(imageBase64))
 
@@ -118,7 +99,7 @@ def ocr_credit():
 
   image = cv2.imdecode(np.fromstring(file.read(), np.uint8), cv2.IMREAD_COLOR)
   file_name = uuid.uuid4().hex[:6]
-  save_path = 'dump2/' + file_name + '.png'
+  save_path = '/tmp/' + file_name + '.png'
   cv2.imwrite(save_path, image)
 
   file_path = os.path.abspath(save_path)
@@ -143,7 +124,7 @@ def ocr_credit_base64():
   image = cv2.imdecode(np.frombuffer(base64.b64decode(imageBase64), dtype=np.uint8), cv2.IMREAD_COLOR)
 
   file_name = uuid.uuid4().hex[:6]
-  save_path = 'dump2/' + file_name + '.png'
+  save_path = '/tmp/' + file_name + '.png'
   cv2.imwrite(save_path, image)
 
   file_path = os.path.abspath(save_path)
@@ -167,7 +148,7 @@ def ocr_barcode():
 
   image = cv2.imdecode(np.fromstring(file.read(), np.uint8), cv2.IMREAD_COLOR)
   file_name = uuid.uuid4().hex[:6]
-  save_path = 'dump2/' + file_name + '.png'
+  save_path = '/tmp/' + file_name + '.png'
   cv2.imwrite(save_path, image)
 
   file_path = os.path.abspath(save_path)
@@ -191,7 +172,7 @@ def ocr_barcode_base64():
   image = cv2.imdecode(np.frombuffer(base64.b64decode(imageBase64), dtype=np.uint8), cv2.IMREAD_COLOR)
 
   file_name = uuid.uuid4().hex[:6]
-  save_path = 'dump2/' + file_name + '.png'
+  save_path = '/tmp/' + file_name + '.png'
   cv2.imwrite(save_path, image)
 
   file_path = os.path.abspath(save_path)
